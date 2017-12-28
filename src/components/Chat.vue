@@ -131,9 +131,11 @@ export default {
                 _chat.sock = new WebSocket(ws_scheme + '://' + config.remote_addr + '/chat-' + this.$store.state.main.robot + '/')
                 _chat.sock.onmessage = function(message) {
                     var data = JSON.parse(message.data)
-                    _chat.add_chat_record(data)
-                    if (_chat.now_user.name != data.name && data.IN){
-                        _chat.unread_add_one(data.name)
+                    if ('name' in data) {
+                        _chat.add_chat_record(data)
+                        if (_chat.now_user.name != data.name && data.IN){
+                            _chat.unread_add_one(data.name)
+                        }
                     }
                 }
             }

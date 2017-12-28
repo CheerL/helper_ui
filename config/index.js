@@ -1,7 +1,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-let port = '80'
-let ip_addr = '127.0.0.1'
+let port = '8000'
+let ip_addr = '192.168.10.100'
 let remote_addr = ip_addr + ':' + port
 
 module.exports = {
