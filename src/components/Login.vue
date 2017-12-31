@@ -116,14 +116,14 @@ export default {
                     _login.status = data.status
                     _login.pic_src = '/' + data.pic;
                     if (data.status == 2) {
-                        _login.is_login(true)
+                        _login.login_update()
                         _login.sock.close()
                         _login.sock = null
                     }
                 };
             }
             else {
-                this.is_login(true)
+                this.login_update()
             }
         },
     },

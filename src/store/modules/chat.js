@@ -12,11 +12,15 @@ const mutations = {
     friend_update_last(state, val) {
         state.last = new Date().getTime()
     },
+    friend_history_update(state, name) {
+        state.friend_list[name].update = true
+    },
     add_chat_record(state, playload) {
         let new_record = {
             sender: playload.sender,
             text: playload.text,
             in: playload.IN,
+            time: playload.time
         }
         state.friend_list[playload.name].chat_record.push(new_record)
     },
@@ -40,6 +44,7 @@ const actions = {
                     temp_dict[temp_name].path = '/' + data.user_list[each].path
                     temp_dict[temp_name].show = true
                     temp_dict[temp_name].unread = 0
+                    temp_dict[temp_name].update = false
                     if (!temp_dict[temp_name].chat_record) {
                         temp_dict[temp_name].chat_record = []
                     }

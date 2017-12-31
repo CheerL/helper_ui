@@ -25,7 +25,7 @@ export default {
         border_color: function(){
             return (this.in) ? '#d2d2d2' : ''
         }
-    }
+    },
 }
 </script>
 

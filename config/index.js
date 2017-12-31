@@ -5,7 +5,7 @@ let ip_addr = '192.168.10.100'
 let remote_addr = ip_addr + ':' + port
 
 module.exports = {
-    ip_addr: ip_addr,
+    ip_addr: 'localhost',
     remote_addr: remote_addr,
     build: {
         env: require('./prod.env'),

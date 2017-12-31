@@ -86,6 +86,7 @@ export default {
         ...mapMutations([
             'friend_list_change',
             'friend_update_last',
+            'friend_history_update',
             'add_chat_record',
             'unread_zero',
             'unread_add_one'
@@ -100,6 +101,13 @@ export default {
         select_func: function(name) {
             this.unread_zero(name)
             this.now_user = this.friend_list[name]
+            if (!this.now_user.update) {
+                $.post('/helper/chat/history/', { user: name }, data => {
+                    if (data.res) {
+                        _chat.friend_history_update(name)
+                    }
+                })
+            }
             if (this.size == 'xs') {
                 if (!this.main_show) {
                     this.main_show = true
