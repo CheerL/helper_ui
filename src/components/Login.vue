@@ -80,16 +80,24 @@ export default {
             'login_update'
         ]),
         exit_func() {
-            $.post("/helper/login/logout/", data => {
-                _login.$Modal.success({
-                    title: '',
-                    content: data
-                });
-                _login.reload_func()
-                _login.text = '请点击登录按钮'
-                _login.pic_src = '/static/images/begin.png'
-                _login.status = 0
-                _login.is_login(false)
+            $.post("/helper/login/logout/", message => {
+                let data = JSON.parse(message)
+                if (data.res) {
+                    _login.$Modal.success({
+                        title: '',
+                        content: '退出成功'
+                    })
+                    _login.reload_func()
+                    _login.text = '请点击登录按钮'
+                    _login.pic_src = '/static/images/begin.png'
+                    _login.status = 0
+                    _login.is_login(false)
+                } else {
+                    _login.$Modal.fail({
+                        title: '',
+                        content: data.msg
+                    })
+                }
             })
         },
 
@@ -99,7 +107,7 @@ export default {
             }
             this.text = "正在获取二维码"
             this.status = 1
-            $.post("/helper/login/login/");
+            $.post("/helper/login/login/")
         },
 
         reload_func() {
